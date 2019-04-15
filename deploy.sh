@@ -3,7 +3,7 @@
 PROJECT="go-echo-server"
 TAG="${PROJECT}:latest"
 
-PORT="18080"
+PORT="80"
 
 echo "removing old container"
 docker rm $(docker stop $(docker ps -a -q --filter ancestor=${TAG} --format="{{.ID}}"))

@@ -1,3 +1,9 @@
+# go-echo-server
+
+a simple echo server written in go to play around with (Docker, AWS EC2, ...)
+
+## Notes
+
 #### ssh:
 
 `ssh -i ~/.ssh/fme_aws_dev.pem ec2-user@<IP_ADDRESS>`
