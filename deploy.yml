@@ -1,0 +1,39 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: go-echo-server
+  labels:
+    app: go-echo-server
+spec:
+  selector:
+    matchLabels:
+      app: go-echo-server
+  template:
+    metadata:
+      labels:
+        app: go-echo-server
+    spec:
+      containers:
+        - name: primary
+          image: index.docker.io/fmezlr/go-echo-server
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-echo-server-service
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  selector:
+    app: go-echo-server
