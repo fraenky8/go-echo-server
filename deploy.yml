@@ -1,10 +1,11 @@
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: go-echo-server
   labels:
     app: go-echo-server
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: go-echo-server
@@ -37,3 +38,19 @@ spec:
       protocol: TCP
   selector:
     app: go-echo-server
+
+---
+
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  annotations:
+  name: go-echo-server-autoscaling
+spec:
+  maxReplicas: 4
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: go-echo-server-autoscaling
+  targetCPUUtilizationPercentage: 50
