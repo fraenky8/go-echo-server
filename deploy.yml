@@ -45,7 +45,7 @@ apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
   annotations:
-  name: go-echo-server
+  name: go-echo-server-autoscaling
 spec:
   maxReplicas: 4
   minReplicas: 1
