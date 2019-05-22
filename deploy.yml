@@ -54,5 +54,3 @@ spec:
     kind: Deployment
     name: go-echo-server
   targetCPUUtilizationPercentage: 50
-  selector:
-    app: go-echo-server
